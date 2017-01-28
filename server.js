@@ -1,16 +1,13 @@
  var PORT = 8090;       //HTTP服务器端口号
- var DIR = 'files';     //用于存放文件的目录
- 
+ var DIR = 'files';     //用于存放文件的目录 
  var http = require('http');
  var url=require('url');
  var fs=require('fs');
  var mine=require('./mine').types;
  var path=require('path'); 
  var server = http.createServer(function (request, response) {
-    console.log( request);
      var pathname = url.parse(request.url).pathname;
      var realPath = path.join(DIR, pathname);
-     //console.log(realPath);
      var ext = path.extname(realPath);
      ext = ext ? ext.slice(1) : 'unknown';
      fs.exists(realPath, function (exists) {
